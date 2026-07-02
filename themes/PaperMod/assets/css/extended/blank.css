@@ -1,5 +1,410 @@
 /*
-This is just a placeholder blank stylesheet so as to support adding custom styles budled with theme's default styles
+ * Custom styles: 朱雀仿宋 + 矩形 + 浅灰层次 + 细线
+ */
 
-Read https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#bundling-custom-css-with-themes-assets for more info
-*/
+/* ── Font ── */
+@import url("https://fontsapi.zeoseven.com/7/main/result.css");
+
+/* ── Override theme variables ── */
+:root {
+    --radius: 0px;
+    --theme: rgb(255, 255, 255);
+    --entry: rgb(248, 248, 248);
+    --primary: rgb(26, 26, 26);
+    --secondary: rgb(120, 120, 120);
+    --tertiary: rgb(220, 220, 220);
+    --content: rgb(40, 40, 40);
+    --code-block-bg: rgb(28, 29, 33);
+    --code-bg: rgb(243, 243, 243);
+    --border: rgb(210, 210, 210);
+    --font-cn: "Zhuque Fangsong (technical preview)", "仿宋", FangSong, STFangsong, serif;
+}
+
+:root[data-theme="dark"] {
+    --theme: rgb(22, 22, 22);
+    --entry: rgb(34, 34, 34);
+    --primary: rgb(225, 225, 225);
+    --secondary: rgb(155, 156, 157);
+    --tertiary: rgb(55, 55, 55);
+    --content: rgb(200, 200, 200);
+    --code-block-bg: rgb(30, 30, 30);
+    --code-bg: rgb(40, 40, 40);
+    --border: rgb(58, 58, 58);
+}
+
+/* ── Base ── */
+body {
+    font-family: var(--font-cn);
+    background: var(--theme);
+}
+
+/* ── Header ── */
+.header-nav {
+    background: rgb(250, 250, 250);
+    border-bottom: 1px solid var(--border);
+}
+
+[data-theme="dark"] .header-nav {
+    background: rgb(28, 28, 28);
+}
+
+.logo a {
+    font-family: var(--font-cn);
+    font-weight: normal;
+    letter-spacing: 0.08em;
+}
+
+.logo a img,
+.logo a svg {
+    border-radius: 0;
+}
+
+.menu a {
+    font-family: var(--font-cn);
+    font-size: 15px;
+    letter-spacing: 0.04em;
+}
+
+.menu .active {
+    text-decoration: none;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 2px;
+}
+
+/* ── Page header ── */
+.page-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.page-header h1 {
+    font-family: var(--font-cn);
+    font-weight: normal;
+    letter-spacing: 0.06em;
+}
+
+/* ── Post header ── */
+.post-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 20px;
+}
+
+.post-title {
+    font-family: var(--font-cn);
+    font-weight: normal;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+}
+
+.post-meta {
+    font-family: var(--font-cn);
+}
+
+/* ── Post entry (list) ── */
+.post-entry {
+    border: 1px solid var(--border);
+    border-radius: 0;
+    background: var(--entry);
+    transition: none;
+}
+
+.post-entry:hover,
+.post-entry:focus-within {
+    transform: none;
+    border-color: var(--primary);
+    background: rgb(245, 245, 245);
+}
+
+[data-theme="dark"] .post-entry:hover,
+[data-theme="dark"] .post-entry:focus-within {
+    background: rgb(38, 38, 38);
+}
+
+.entry-header h2 {
+    font-family: var(--font-cn);
+    font-weight: normal;
+    letter-spacing: 0.03em;
+}
+
+.entry-content {
+    font-family: var(--font-cn);
+}
+
+.entry-footer {
+    font-family: var(--font-cn);
+}
+
+.entry-link {
+    border-radius: 0;
+}
+
+/* ── First entry ── */
+.first-entry {
+    background: var(--entry);
+    border: 1px solid var(--border);
+    padding: var(--gap);
+    min-height: 200px;
+}
+
+.first-entry .entry-header h2 {
+    font-family: var(--font-cn);
+    font-weight: normal;
+}
+
+/* ── Post content ── */
+.post-content {
+    font-family: var(--font-cn);
+    line-height: 1.9;
+    letter-spacing: 0.02em;
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+    font-family: var(--font-cn);
+    font-weight: normal;
+    letter-spacing: 0.05em;
+}
+
+.post-content h2 {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+}
+
+.post-content a:not(.anchor) {
+    text-decoration: none;
+    border-bottom: 1px solid var(--secondary);
+    transition: border-color 0.2s;
+}
+
+.post-content a:not(.anchor):hover {
+    border-bottom-color: var(--primary);
+}
+
+/* ── Blockquote ── */
+.md-content blockquote {
+    border-inline-start: 3px solid var(--primary);
+    background: var(--code-bg);
+    padding: 12px 20px;
+    margin: 20px 0;
+}
+
+[data-theme="dark"] .md-content blockquote {
+    background: rgb(32, 32, 32);
+}
+
+/* ── Code ── */
+.post-content code {
+    border-radius: 0;
+    border: 1px solid var(--border);
+    font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+}
+
+.md-content pre code {
+    border-radius: 0;
+}
+
+.md-content .highlight:not(table) {
+    border-radius: 0;
+    border: 1px solid var(--border);
+}
+
+/* ── Table ── */
+.md-content table th,
+.md-content table td {
+    border: 1px solid var(--border);
+    padding: 8px 14px;
+}
+
+.md-content table th {
+    background: var(--code-bg);
+    font-weight: normal;
+}
+
+[data-theme="dark"] .md-content table th {
+    background: rgb(38, 38, 38);
+}
+
+/* ── Horizontal rule ── */
+.md-content hr {
+    background: var(--border);
+    height: 1px;
+    margin: 40px 0;
+}
+
+/* ── Tags ── */
+.post-tags a {
+    border-radius: 0;
+    border: 1px solid var(--border);
+    font-family: var(--font-cn);
+    transition: all 0.2s;
+}
+
+.post-tags a:hover {
+    background: var(--border);
+}
+
+/* ── TOC ── */
+details.toc {
+    border-radius: 0;
+    border: 1px solid var(--border);
+    background: var(--code-bg);
+}
+
+[data-theme="dark"] details.toc {
+    background: rgb(32, 32, 32);
+}
+
+details.toc summary {
+    border-radius: 0;
+    font-family: var(--font-cn);
+}
+
+details .title {
+    font-family: var(--font-cn);
+    font-weight: normal;
+}
+
+/* ── Pagination nav ── */
+.paginav {
+    border-radius: 0;
+    border: 1px solid var(--border);
+}
+
+.paginav a {
+    border-radius: 0;
+}
+
+.paginav .title {
+    font-family: var(--font-cn);
+    letter-spacing: 0.1em;
+}
+
+/* ── Share buttons ── */
+.share-buttons {
+    border-radius: 0;
+    border: 1px solid var(--border);
+}
+
+/* ── Breadcrumbs ── */
+.breadcrumbs {
+    font-family: var(--font-cn);
+}
+
+/* ── Footer ── */
+.footer {
+    border-top: 1px solid var(--border);
+    background: rgb(250, 250, 250);
+    font-family: var(--font-cn);
+}
+
+[data-theme="dark"] .footer {
+    background: rgb(28, 28, 28);
+}
+
+/* ── Top link ── */
+.top-link {
+    border-radius: 0;
+    border: 1px solid var(--border);
+}
+
+/* ── Archive ── */
+.archive-year:not(:last-of-type) {
+    border-bottom: 1px solid var(--primary);
+}
+
+.archive-month:not(:last-of-type) {
+    border-bottom: 1px solid var(--border);
+}
+
+.archive-year {
+    font-family: var(--font-cn);
+    font-weight: normal;
+}
+
+.archive-month-header {
+    font-family: var(--font-cn);
+    font-weight: normal;
+}
+
+.archive-entry-title {
+    font-family: var(--font-cn);
+}
+
+/* ── Pagination ── */
+.pagination a {
+    border-radius: 0;
+}
+
+/* ── Search ── */
+.search-input,
+.search-results .post-entry {
+    border-radius: 0;
+}
+
+/* ── List page background ── */
+.list {
+    background: rgb(252, 252, 252);
+}
+
+[data-theme="dark"] .list {
+    background: rgb(26, 26, 26);
+}
+
+/* ── Images ── */
+.md-content img {
+    border-radius: 0;
+    border: 1px solid var(--border);
+}
+
+/* ── Audio / Video ── */
+audio {
+    border-radius: 0;
+}
+
+video {
+    border-radius: 0;
+}
+
+/* ── Headings anchor ── */
+.md-content h1:hover .anchor,
+.md-content h2:hover .anchor,
+.md-content h3:hover .anchor,
+.md-content h4:hover .anchor,
+.md-content h5:hover .anchor,
+.md-content h6:hover .anchor {
+    font-family: var(--font-cn);
+}
+
+/* ── Selection ── */
+::selection {
+    background: rgb(220, 220, 220);
+    color: rgb(26, 26, 26);
+}
+
+[data-theme="dark"] ::selection {
+    background: rgb(60, 60, 60);
+    color: rgb(225, 225, 225);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--code-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--tertiary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary);
+}

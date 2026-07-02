@@ -1,6 +1,6 @@
 baseURL = 'https://FlamingoCheers.github.io/'
 locale = 'zh-cn'
-title = '我的独立博客'
+title = 'Flamingo · Cheers'
 theme = 'PaperMod'
 
 # 启用相对链接
@@ -48,8 +48,8 @@ paginate = 10
 # PaperMod 主题参数
 [params]
   env = "production"
-  description = "我的独立博客 - 思考、观点、AI、阅读、旅行"
-  author = "博主"
+  description = "两只火烈鸟🥂 - 思考、观点、AI、阅读、旅行"
+  author = "夏渡云"
   
   # 显示阅读时间
   ShowReadingTime = true
