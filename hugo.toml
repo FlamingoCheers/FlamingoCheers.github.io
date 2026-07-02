@@ -1,0 +1,108 @@
+baseURL = 'https://FlamingoCheers.github.io/'
+locale = 'zh-cn'
+title = '我的独立博客'
+theme = 'PaperMod'
+
+# 启用相对链接
+relativeURLs = true
+canonifyURLs = true
+
+# 分页设置
+paginate = 10
+
+# 永久链接格式
+[permalinks]
+  posts = '/:year/:month/:title/'
+
+# 菜单设置
+[[menu.main]]
+  identifier = "home"
+  name = "首页"
+  url = "/"
+  weight = 1
+
+[[menu.main]]
+  identifier = "archives"
+  name = "归档"
+  url = "/archives/"
+  weight = 2
+
+[[menu.main]]
+  identifier = "tags"
+  name = "标签"
+  url = "/tags/"
+  weight = 3
+
+[[menu.main]]
+  identifier = "categories"
+  name = "分类"
+  url = "/categories/"
+  weight = 4
+
+[[menu.main]]
+  identifier = "about"
+  name = "关于"
+  url = "/about/"
+  weight = 5
+
+# PaperMod 主题参数
+[params]
+  env = "production"
+  description = "我的独立博客 - 思考、观点、AI、阅读、旅行"
+  author = "博主"
+  
+  # 显示阅读时间
+  ShowReadingTime = true
+  
+  # 显示分享按钮
+  ShowShareButtons = true
+  
+  # 显示帖子目录
+  ShowToc = true
+  TocOpen = false
+  
+  # 显示面包屑导航
+  ShowBreadCrumbs = true
+  
+  # 显示代码复制按钮
+  ShowCodeCopyButtons = true
+  
+  # 显示文章字数
+  ShowWordCount = true
+  
+  # 使用标签
+  ShowRssButtonInSectionTermList = true
+  
+  # 启用回退到顶部按钮
+  ShowBackToTop = true
+  
+  # 时区
+  timezone = "Asia/Shanghai"
+
+# 社交链接（可选，取消注释并填写你的链接）
+# [[params.socialIcons]]
+#   name = "github"
+#   url = "https://github.com/yourusername"
+# 
+# [[params.socialIcons]]
+#   name = "twitter"
+#   url = "https://twitter.com/yourusername"
+#
+# [[params.socialIcons]]
+#   name = "email"
+#   url = "mailto:your@email.com"
+
+# 搜索配置
+[params.fuse]
+  location = 1
+  threshold = 0.3
+  ignoreFieldnorm = false
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+# 分类和标签
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  series = "series"
