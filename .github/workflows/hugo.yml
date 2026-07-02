@@ -7,7 +7,9 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: "pages"
@@ -18,7 +20,7 @@ defaults:
     shell: bash
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.163.3
@@ -26,7 +28,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: recursive
           fetch-depth: 0
 
       - name: Setup Hugo
@@ -45,11 +46,18 @@ jobs:
             --minify \
             --baseURL "https://FlamingoCheers.github.io/"
 
-      - name: Deploy to main branch
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: main
-          publish_dir: ./public
-          keep_files: true
-          exclude_assets: '.github,content,themes,archetypes,hugo.toml,.gitignore,LICENSE,PUBLISHING_GUIDE.md,README.md'
+          path: ./public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
