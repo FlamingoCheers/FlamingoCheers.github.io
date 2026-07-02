@@ -1,7 +1,10 @@
 baseURL = 'https://FlamingoCheers.github.io/'
-locale = 'zh-cn'
+languageCode = 'zh-cn'
 title = 'Flamingo · Cheers'
 theme = 'PaperMod'
+
+# 启用 CJK 语言支持，正确统计中文字数
+hasCJKLanguage = true
 
 # 启用相对链接
 relativeURLs = true

@@ -1,12 +1,12 @@
 ---
-title: "欢迎来到我的博客"
+title: “欢迎来到我的博客”
 date: 2026-07-02T19:40:00+08:00
 draft: false
-author: "博主"
-description: "这是我的第一篇博客文章，介绍这个博客的主题和方向。"
-tags: ["博客", "开始"]
-categories: ["生活"]
-series: ["博客系列"]
+author: “博主”
+description: “这是我的第一篇博客文章，介绍这个博客的主题和方向。”
+tags: [“博客”, “开始”]
+categories: [“生活”]
+series: [“博客系列”]
 ---
 
 ## 你好，世界！
