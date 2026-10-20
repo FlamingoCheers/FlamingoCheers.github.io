@@ -1,0 +1,74 @@
+{{ define "main" }}
+<section class="hero">
+    <div class="hero-inner">
+        <h1 class="hero-title">{{ site.Title }}</h1>
+        <p class="hero-en">{{ site.Params.siteNameEn }}</p>
+    </div>
+</section>
+
+<div class="home-wrap">
+<div class="home-inner">
+    {{ $all := slice }}
+    {{ range where site.RegularPages "Section" "writing" }}{{ $all = $all | append . }}{{ end }}
+    {{ with site.GetPage "/research" }}{{ range .Sections }}{{ $all = $all | append . }}{{ end }}{{ end }}
+    {{ $latest := false }}
+    {{ if $all }}{{ $latest = index (sort $all "Date" "desc") 0 }}{{ end }}
+    {{ with $latest }}
+    <section class="home-section latest">
+        <div class="latest-head">
+            <span class="eyebrow">LATEST</span>
+            <span class="badge">最新发布</span>
+        </div>
+        <a class="latest-link" href="{{ .RelPermalink }}">
+            <div class="latest-meta">
+                <span class="latest-kind">{{ if eq .Section "research" }}研究{{ else }}文章{{ end }}</span>
+                <time>{{ .Date | time.Format "2006.01.02" }}</time>
+            </div>
+            <h2 class="latest-title">{{ .Title }}</h2>
+            {{ with .Description }}<p class="latest-desc">{{ . }}</p>{{ end }}
+        </a>
+    </section>
+    {{ end }}
+
+    <section class="home-section">
+        <div class="section-head">
+            <h2 class="section-title">研究</h2>
+            <a class="section-link" href="{{ "/research/" | relLangURL }}">全部研究 →</a>
+        </div>
+        <div class="project-list">
+            {{ with site.GetPage "/research" }}
+            {{ range .Sections.ByWeight }}
+            <a class="project-row" href="{{ .RelPermalink }}">
+                <span class="project-num">{{ printf "%02d" (div .Weight 10) }}</span>
+                <span class="project-main">
+                    <span class="project-title">{{ .Title }}</span>
+                    <span class="project-desc">{{ .Description }}</span>
+                </span>
+                <span class="project-meta">{{ len .RegularPages }} 章{{ with .Params.status }} · {{ . }}{{ end }}</span>
+            </a>
+            {{ end }}
+            {{ end }}
+        </div>
+    </section>
+
+    {{ $posts := where site.RegularPages "Section" "writing" }}
+    {{ with $posts }}
+    <section class="home-section">
+        <div class="section-head">
+            <h2 class="section-title">文章</h2>
+            <a class="section-link" href="{{ "/writing/" | relLangURL }}">全部文章 →</a>
+        </div>
+        <div class="post-list">
+            {{ range first 5 .ByDate.Reverse }}
+            <a class="post-row" href="{{ .RelPermalink }}">
+                <time class="post-date">{{ .Date | time.Format "2006.01.02" }}</time>
+                <span class="post-title">{{ .Title }}</span>
+                <span class="post-cat">{{ range first 1 .Params.categories }}{{ . }}{{ end }}</span>
+            </a>
+            {{ end }}
+        </div>
+    </section>
+    {{ end }}
+</div>
+</div>
+{{ end }}

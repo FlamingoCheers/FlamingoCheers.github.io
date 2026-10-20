@@ -1,0 +1,35 @@
+{{ define "main" }}
+{{ $posts := where site.RegularPages "Section" "writing" }}
+<div class="page">
+    <header class="page-head">
+        <nav class="crumb">
+            <a href="{{ "" | relLangURL }}">首页</a><span class="sep">/</span><span>文章</span>
+        </nav>
+        <h1 class="page-title">{{ .Title }}</h1>
+        {{ with .Description }}<p class="page-desc">{{ . }}</p>{{ end }}
+        <div class="filters">
+            <a class="filter is-active" href="{{ .RelPermalink }}">全部</a>
+            {{ range site.Taxonomies.categories.Alphabetical }}
+            <a class="filter" href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }}</a>
+            {{ end }}
+        </div>
+    </header>
+
+    {{ with .Content }}<div class="page-body md-content">{{ . }}</div>{{ end }}
+
+    <div class="writing-list">
+        {{ range $posts.GroupByDate "2006" }}
+        <section class="year-block">
+            <h2 class="year">{{ .Key }}</h2>
+            {{ range .Pages.ByDate.Reverse }}
+            <a class="post-row" href="{{ .RelPermalink }}">
+                <time class="post-date">{{ .Date | time.Format "01.02" }}</time>
+                <span class="post-title">{{ .Title }}</span>
+                <span class="post-cat">{{ range first 1 .Params.categories }}{{ . }}{{ end }}</span>
+            </a>
+            {{ end }}
+        </section>
+        {{ end }}
+    </div>
+</div>
+{{ end }}

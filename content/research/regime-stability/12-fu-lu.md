@@ -5,11 +5,13 @@ draft: false
 author: "夏渡云"
 description: "史料原文摘录、二十五个政权的档案卡汇总表、中西纪年对照表与主要参考文献。"
 tags: ["政权稳固度", "史料", "档案卡", "参考文献"]
-categories: ["研究"]
 series: ["中国历代政权稳固度研究"]
 weight: 120
 ShowToc: true
 TocOpen: false
+chapter: "12"
+group: "结语与附录"
+aliases: ["/research/12-fu-lu/"]
 ---
 
 ## 附录A 史料原文摘录汇编（精选）
@@ -275,7 +277,3 @@ TocOpen: false
 **全书完**
 
 *本报告为史料考证型研究，全部结论可回到所引原文复核；检索不到原文处已如实标注“待核”，请读者注意区分“史料原文”与“今人解释”。*
-
----
-
-**上一章**：[结语：两个问题的答案，与答案的边界](/research/11-jie-yu/)

@@ -1,5 +1,7 @@
 # Hugo
 public/
+public_test/
+public_debug/
 resources/
 
 # Build

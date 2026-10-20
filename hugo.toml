@@ -1,6 +1,7 @@
 baseURL = 'https://FlamingoCheers.github.io/'
-languageCode = 'zh-cn'
-title = 'Flamingo · Cheers'
+defaultContentLanguage = 'zh-cn'
+locale = 'zh-CN'
+title = '两只火烈鸟'
 theme = 'PaperMod'
 
 # 启用 CJK 语言支持，正确统计中文字数
@@ -15,7 +16,7 @@ paginate = 10
 
 # 永久链接格式
 [permalinks]
-  posts = '/:year/:month/:title/'
+  writing = '/writing/:slug/'
 
 # 菜单设置
 [[menu.main]]
@@ -31,76 +32,43 @@ paginate = 10
   weight = 2
 
 [[menu.main]]
-  identifier = "archives"
-  name = "归档"
-  url = "/archives/"
+  identifier = "writing"
+  name = "文章"
+  url = "/writing/"
   weight = 3
-
-[[menu.main]]
-  identifier = "tags"
-  name = "标签"
-  url = "/tags/"
-  weight = 4
-
-[[menu.main]]
-  identifier = "categories"
-  name = "分类"
-  url = "/categories/"
-  weight = 5
 
 [[menu.main]]
   identifier = "about"
   name = "关于"
   url = "/about/"
-  weight = 6
+  weight = 4
 
 # PaperMod 主题参数
 [params]
   env = "production"
-  mainSections = ["posts"]
-  description = "两只火烈鸟🥂 - 思考、观点、AI、阅读、旅行"
+  mainSections = ["writing"]
+  description = "两只火烈鸟 · 思考、AI、阅读与旅行"
   author = "夏渡云"
-  
-  # 显示阅读时间
-  ShowReadingTime = true
-  
-  # 显示分享按钮
-  ShowShareButtons = true
-  
-  # 显示帖子目录
-  ShowToc = true
+  siteNameEn = "Flamingo · Cheers"
+
+  # 文章页信息由自定义模板输出
+  ShowReadingTime = false
+  ShowShareButtons = false
+  ShowToc = false
   TocOpen = false
-  
-  # 显示面包屑导航
-  ShowBreadCrumbs = true
-  
-  # 显示代码复制按钮
+  ShowBreadCrumbs = false
   ShowCodeCopyButtons = true
-  
-  # 显示文章字数
-  ShowWordCount = true
-  
-  # 使用标签
+  ShowWordCount = false
   ShowRssButtonInSectionTermList = true
-  
-  # 启用回退到顶部按钮
   ShowBackToTop = true
-  
+  ShowPostNavLinks = false
+
   # 时区
   timezone = "Asia/Shanghai"
 
-# 社交链接（可选，取消注释并填写你的链接）
-# [[params.socialIcons]]
-#   name = "github"
-#   url = "https://github.com/yourusername"
-# 
-# [[params.socialIcons]]
-#   name = "twitter"
-#   url = "https://twitter.com/yourusername"
-#
-# [[params.socialIcons]]
-#   name = "email"
-#   url = "mailto:your@email.com"
+[params.footer]
+  hideCopyright = true
+  text = "[归档](/archives/) · [标签](/tags/) · [搜索](/search/) · [RSS](/index.xml) · [GitHub](https://github.com/FlamingoCheers)"
 
 # 搜索配置
 [params.fuse]
@@ -116,3 +84,4 @@ paginate = 10
   category = "categories"
   tag = "tags"
   series = "series"
+

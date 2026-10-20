@@ -1,0 +1,81 @@
+{{ define "main" }}
+{{ if .Parent.IsHome }}
+<div class="page">
+    <header class="page-head">
+        <nav class="crumb">
+            <a href="{{ "" | relLangURL }}">首页</a><span class="sep">/</span><span>研究</span>
+        </nav>
+        <h1 class="page-title">{{ .Title }}</h1>
+        {{ with .Description }}<p class="page-desc">{{ . }}</p>{{ end }}
+    </header>
+
+    {{ with .Content }}<div class="page-body md-content">{{ . }}</div>{{ end }}
+
+    <div class="project-list">
+        {{ range .Sections.ByWeight }}
+        <a class="project-row" href="{{ .RelPermalink }}">
+            <span class="project-num">{{ printf "%02d" (div .Weight 10) }}</span>
+            <span class="project-main">
+                <span class="project-title">{{ .Title }}</span>
+                <span class="project-desc">{{ .Description }}</span>
+            </span>
+            <span class="project-meta">{{ .Date | time.Format "2006" }}{{ with .Params.status }} · {{ . }}{{ end }}</span>
+        </a>
+        {{ end }}
+    </div>
+</div>
+{{ else }}
+{{ $series := . }}
+<div class="page">
+    <header class="page-head">
+        <nav class="crumb">
+            <a href="{{ "" | relLangURL }}">首页</a><span class="sep">/</span>
+            <a href="{{ "/research/" | relLangURL }}">研究</a><span class="sep">/</span>
+            <span>{{ .Title }}</span>
+        </nav>
+        <h1 class="page-title">{{ .Title }}</h1>
+        {{ with .Description }}<p class="page-desc">{{ . }}</p>{{ end }}
+        {{ $words := 0 }}
+        {{ range .RegularPages }}{{ $words = add $words .WordCount }}{{ end }}
+        <div class="series-meta">
+            <span>{{ len .RegularPages }} 章</span>
+            <span>{{ printf "%.1f" (div (float $words) 10000) }} 万字</span>
+            <span>{{ .Date | time.Format "2006.01" }}</span>
+            {{ with .Params.status }}<span>{{ . }}</span>{{ end }}
+        </div>
+    </header>
+
+    {{ with .Content }}<div class="page-body md-content">{{ . }}</div>{{ end }}
+
+    <a class="download" href="{{ "/downloads/zhengquan-wenguodu-yanjiu-baogao.docx" | relURL }}">
+        <span class="download-label">完整报告</span>
+        <span class="download-file">DOCX · 约 2.8 万字</span>
+        <span class="download-arrow">↓</span>
+    </a>
+
+    {{ $groups := slice }}
+    {{ range .RegularPages.ByWeight }}
+        {{ $g := .Params.group }}
+        {{ if not (in $groups $g) }}{{ $groups = $groups | append $g }}{{ end }}
+    {{ end }}
+
+    {{ range $groups }}
+    <div class="chapter-group">
+        <h2 class="group-title">{{ . }}</h2>
+        <div class="chapter-list">
+            {{ range where $series.RegularPages.ByWeight "Params.group" . }}
+            <a class="chapter-row" href="{{ .RelPermalink }}">
+                <span class="chapter-num">{{ .Params.chapter }}</span>
+                <span class="chapter-main">
+                    <span class="chapter-title">{{ .Title }}</span>
+                    <span class="chapter-desc">{{ .Description }}</span>
+                </span>
+                <span class="chapter-time">{{ .ReadingTime }} 分钟</span>
+            </a>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+</div>
+{{ end }}
+{{ end }}
