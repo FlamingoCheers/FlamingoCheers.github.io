@@ -36,9 +36,6 @@ jobs:
           hugo-version: ${{ env.HUGO_VERSION }}
           extended: true
 
-      - name: Fix Chinese quotes
-        run: python3 scripts/fix_chinese_quotes.py
-
       - name: Build with Hugo
         env:
           HUGO_ENVIRONMENT: production
